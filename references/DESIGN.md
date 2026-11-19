@@ -1,122 +1,43 @@
----
-version: alpha
-name: LOEWE-editorial-craft
-description: 罗意威 180 周年「杂志×书店×工艺奖」视觉系统拆解——源自三组真实素材：白色 Amazona 手袋产品硬照、naive 理想国书店联乘橱窗、LOEWE Foundation Craft Prize 静物。性格词：**手作拼贴型编辑视觉**。暖纸画布为正文主场，深茄紫绒为负空间封面/数据页主场；红蓝双电压（朱砂红手写 + anagram 蓝大字标）一页只响一声；拼贴元素（吊牌、撕边、小兽、静物组、微旋转）替代阴影与圆角成为层级语言。
+# 设计规范
 
-colors:
-  vermilion: "#C61D2E"
-  vermilion-deep: "#9E1B26"
-  lacquer-red: "#B0202A"
-  anagram-blue: "#2FB4E7"
-  anagram-blue-soft: "#5C9DBE"
-  paper: "#EDE5DE"
-  paper-soft: "#F4EEE7"
-  velvet: "#2B2139"
-  velvet-deep: "#221A2F"
-  blush: "#F0D9DE"
-  ink: "#1E1B19"
-  ink-on-velvet: "#F2EDE6"
-  body: "#4A4440"
-  body-on-velvet: "#B9AEC6"
-  muted: "#8A8078"
-  muted-on-velvet: "#7A6E8C"
-  rattan: "#9D6335"
-  terracotta: "#8F4633"
-  glass-grey: "#93A4AE"
+## 风格与优先级
 
-typography:
-  anagram-display:
-    fontFamily: "'Cormorant Garamond', 'Noto Serif SC', serif"
-    fontWeight: 500
-    textTransform: uppercase
-    letterSpacing: 0.14em
-    note: 蓝色大字标专用；词内断字（LO·EWE 式），封面 ≤92px 偏置不居中
-  serif-title:
-    fontFamily: "'Cormorant Garamond', 'Noto Serif SC', serif"
-    fontWeight: 500
-    lineHeight: 1.25
-    note: 页标题、卡片标题、数据巨数；weight 500 封顶，大字不加粗
-  hand-red:
-    fontFamily: "'Caveat', 'Ma Shan Zheng', cursive"
-    fontWeight: 700
-    textTransform: uppercase
-    letterSpacing: 0.18em
-    color: "{colors.vermilion}"
-    note: 手写红字；只写情绪不写信息，一页一处，≤3° 微斜
-  label-caps:
-    fontFamily: "'Space Grotesk', 'PingFang SC', sans-serif"
-    fontWeight: 600
-    fontSize: 13px
-    letterSpacing: 0.23em
-    textTransform: uppercase
-    note: kicker 栏目眉，朱砂红
-  mono-cap:
-    fontFamily: "'Space Mono', monospace"
-    fontSize: 12px
-    letterSpacing: 0.08em
-    note: 刊务声部：编号、出处、页码、图表标签
-  body-text:
-    fontFamily: "'Space Grotesk', 'PingFang SC', sans-serif"
-    fontWeight: 400
-    fontSize: 16px
-    lineHeight: 1.65
-    note: 正文；下限 18px 的例外仅限 mono-cap 刊务行
+保留暖纸、深紫负空间、红蓝强调、纸张错位叠压与编辑式字级。用户明确要求、内容准确性、可读性与操作可达性优先于装饰偏好。无需每页凑满三层，也无需每页发明不同构图。
 
-components:
-  hang-tag:
-    note: 实底吊牌——主题色实底 + 纸色 mono 文字 + 金属环孔；承载关键词与详情锚点，可 zoomable
-  torn:
-    note: 撕边纸签——clip-path 撕纸边，骑缝压叠在色版边缘，承载数据标签
-  collage-card:
-    note: 色纸块骑缝卡——内容卡的法定形态，色纸影错位 3-4px，无描边
-  still-life:
-    note: 静物组——漆红/陶土/藤色方块与圆点，摆位在页面边缘探出，是色彩的非文字出口
-  mascot:
-    note: 红色剪影小兽——一页至多一只，无描边无渐变，收尾或爬轴用
-  stat-giant:
-    note: 数据巨数——衬线 90px+，配手写批注与 mono 出处，称「数字偈」
-  ribbon:
-    note: 页脚进度带——mono 页码左、栏目名右
+## Token 与文字角色
 
----
+运行底座 `assets/sample-deck.html` 的 `:root` 是数值的唯一实现来源。
 
-## Overview
+- `--paper` / `--paper-soft`：浅色画布和纸签。
+- `--velvet` / `--light`：深色画布和其上的文字。
+- `--ink` / `--muted`：浅底正文和辅助文字。
+- `--red` / `--blue`：强调色。蓝色用于深底大字或图形，浅底小字使用深墨色。
+- `--serif` / `--sans` / `--mono`：展示、正文、来源。默认系统字体，中文设明确回退。
+- 正文尺寸与来源尺寸分别由 `--body-size` / `--caption-size` 控制。保持底座的可读基准，桌面空间不足时拆页；窄屏改为纵向阅读。
 
-LOEWE Editorial Craft 是一套手作拼贴型编辑视觉系统。全部语法来自三组真实素材：深茄紫产品硬照、米白书店橱窗、樱花粉工艺奖静物。红蓝双电压（朱砂红手写 × anagram 蓝大字标）是唯一的强调系统，一页一主一辅，永不同时抢戏。
+每页选择一个主强调色，另一色只做小面积辅助。正文不使用手写体。手写批注可选，每页至多一处，不承担数据、专名或必要结论。缺少手写字体时直接省略该装饰。
 
-层级不用阴影——用纸张的叠压、错位实色影（3-4px）、撕边、静物探边表达前后关系。全部内容载具水平放置（rotate 0），材质感来自纸/绒/漆/藤的真实质感，不来自倾斜。
+## 构图选择
 
-## 硬禁令（Don't，违反即返工）
+| 信息关系 | 推荐布局 | 需要避免的失真 |
+|---|---|---|
+| 一个中心判断 | 大标题 + 一个支持点 | 为凑版面添加无依据口号 |
+| 论点与证据 | 不对称双栏或图文叠版 | 装饰遮住证据 |
+| 并列或比较 | 编号清单、等尺度对比 | 用面积差暗示未被数据支持的优劣 |
+| 顺序与计划 | 编号步骤、里程碑 | 强塞成固定五步或年度时间轴 |
+| 数量与变化 | 柱图、折线、直接标注 | 截断柱图零基线或缺单位 |
+| 高密度材料 | 分组正文、续页、附录 | 缩小字体或隐藏核心文字 |
 
-- **禁止细线装饰成分**：卡片描边、骑细彩条、行分隔线、中缝虚线、虚线网格、双细规线——分隔交给留白、色块明度差、字级差
-- **禁止同质卡片复读**：「mono 小标+大字+一行说明」同骨架排排坐是 AI 舒适区；清单用编号式编辑排版，对比用明暗双版尺度差，时间轴用缎带轴+数字节点
-- **禁止内容载具旋转**：色版、卡片、吊牌、纸签、静物一律 rotate(0)。仅手写批注与小兽 ≤3° 例外
-- 禁止纯白 #FFFFFF 画布、纯黑 #000000 文字——暖调是体温
-- 禁止阴影层级系统；唯一允许的伪影是 3-4px 错位实色剪纸影
-- 禁止饼图、圆角卡片容器、玻璃拟态
-- 禁止小兽加表情细节/描边/渐变；一页至多一只
-- 禁止手写体写正文长句、禁止蓝色手写体——手写位只属于朱砂红
-- 禁止渐变光效、霓虹、毛玻璃彩色蒙层
-- 封面蓝色大标克制使用（≤92px，偏置不居中），深茄紫负空间是主角
+目录不是必需页；出现时用稳定 ID 跳转。页码由脚本计算。短稿可直接进入正文；长稿可重复同一布局以帮助比较。装饰形状用 `aria-hidden="true"`。
 
-## 页面骨架（12 页型）
+## 风格约束
 
-| 页型 | 构成 |
-|---|---|
-| 封面 | 紫绒负空间 + 蓝色 anagram 大标偏置 + 静物组 + 手写批注 |
-| 目录 | 编辑式目录行，色块短线 + 序号，可跳页 |
-| 章节页 | 大字 + 静物 + 小兽 |
-| 正文图文 | 压叠图版：色版叠色版，文字块压边探出，撕边纸签骑缝 |
-| 清单页 | 编号式编辑清单（大衬线序号），唯一红块时刻 |
-| 巨数页 | 数字偈：巨数 + 手写批注 + mono 出处 |
-| 图表页 | 分组柱状 + 折线，无网格无轴线，柱即色票 |
-| 对比页 | 明暗双版：紫绒大版本品 vs 米色小版旧款，大小即结论 |
-| 时间轴 | 横向缎带轴 + 年份数字节点 + 小兽爬轴 + 实底发布块 |
-| 金句页 | 一句居中 + 手写 + 落款 |
-| 封底 | 紫绒 + 静物 + 刊号 |
+内容容器保持水平；留白、实色纸块、字号差建立层级。避免无信息作用的细线、玻璃拟态、渐变光效和连续重复的通用卡片。允许图表轴线、数据网格、链接下划线和键盘焦点轮廓，因为它们承担功能。
 
-## 交互三件套
+使用原图、截图或第三方图表时保留其信息完整性，不为统一风格改掉事实。图片配置 alt 与来源；装饰图使用空 alt。品牌元素只在主题需要且有合适素材时出现。
 
-- ← → 翻页（回弹曲线 cubic-bezier(.32,.72,0,1)）
-- 目录行点击跳页（data-goto）
-- .zoomable 卡片点开克隆放大、点任意处还原（data-extra 承载展开详情）
+## 展示与阅读
+
+桌面采用 16:9 舞台；内容区可滚动作为兜底，但正式桌面演示发现溢出应优先拆页。窄屏内容纵排、允许滚动，不能靠缩放整张画布把字变得不可读。
+
+转场遵循系统减少动态效果设置。打印输出所有页面及补充详情，隐藏操作按钮，不把当前页状态带进导出。HTML 打印成 PDF 不等同于可编辑 PPTX。

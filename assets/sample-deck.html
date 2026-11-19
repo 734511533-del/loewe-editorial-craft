@@ -1,38 +1,101 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LOEWE Editorial Craft · Sample Deck</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Caveat:wght@500;700&family=Space+Grotesk:wght@400;600&family=Space+Mono:wght@400&family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@500&display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>编辑拼贴风 · 可复用演示</title>
 <style>
-:root{--vermilion:#C61D2E;--anagram-blue:#2FB4E7;--paper:#EDE5DE;--paper-soft:#F4EEE7;--velvet:#2B2139;--ink:#1E1B19;--ink-on-velvet:#F2EDE6;--body:#4A4440;--muted:#8A8078;--serif:'Cormorant Garamond','Noto Serif SC',serif;--hand:'Caveat','Ma Shan Zheng',cursive;--grot:'Space Grotesk','PingFang SC',sans-serif;--mono:'Space Mono',monospace}
-*{margin:0;padding:0;box-sizing:border-box}
-html,body{height:100%;background:#15101f;overflow:hidden;font-family:var(--grot)}
-.deck{position:relative;width:100vw;height:100vh}
-.slide{position:absolute;inset:0;display:none;overflow:hidden;transition:transform .4s cubic-bezier(.32,.72,0,1),opacity .4s}
-.slide.active{display:block}
-.anagram{font-family:var(--serif);font-weight:500;text-transform:uppercase;letter-spacing:.14em;color:var(--anagram-blue)}
-.hand-red{font-family:var(--hand);font-weight:700;text-transform:uppercase;letter-spacing:.18em;color:var(--vermilion)}
-.serif-title{font-family:var(--serif);font-weight:500;line-height:1.25}
-.label-caps{font-family:var(--grot);font-weight:600;font-size:13px;letter-spacing:.23em;text-transform:uppercase}
-.mono-cap{font-family:var(--mono);font-size:12px;letter-spacing:.08em}
-.body-text{font-family:var(--grot);font-size:16px;line-height:1.65;color:var(--body)}
-.ribbon{position:absolute;left:64px;right:64px;bottom:34px;display:flex;justify-content:space-between;font-family:var(--mono);font-size:12px;color:var(--muted)}
+:root{--paper:#ede5de;--paper-soft:#f4eee7;--velvet:#2b2139;--light:#f2ede6;--ink:#1e1b19;--muted:#655a53;--red:#b51d2e;--blue:#2fb4e7;--serif:Georgia,'Songti SC','Noto Serif CJK SC',serif;--sans:'PingFang SC','Microsoft YaHei',system-ui,sans-serif;--mono:ui-monospace,monospace;--body-size:clamp(18px,1.6vw,24px);--caption-size:14px}
+*{box-sizing:border-box}body{margin:0;background:#17121e;color:var(--ink);font-family:var(--sans);font-size:var(--body-size);line-height:1.6}button,a{touch-action:manipulation}button{font:inherit;cursor:pointer}button:focus-visible,a:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--blue);outline-offset:5px}button:disabled{opacity:.45;cursor:default}a{color:inherit;text-underline-offset:4px}main{width:min(100%,1440px);margin:auto}.slide{aspect-ratio:16/9;max-height:calc(100dvh - 80px);min-height:480px;background:var(--paper);padding:clamp(28px,4vw,66px);overflow:auto;position:relative;isolation:isolate}.slide[hidden]{display:none}.slide.active{animation:enter .3s cubic-bezier(.32,.72,0,1)}.dark{background:var(--velvet);color:var(--light)}h1,h2,h3,p{margin:0 0 1rem}h1,h2{font-family:var(--serif);font-weight:500;line-height:1.18;overflow-wrap:anywhere}h1{font-size:clamp(40px,5.8vw,84px);max-width:13em}h2{font-size:clamp(32px,4vw,58px)}h3{font-size:1.15em}.kicker{font:600 14px var(--mono);letter-spacing:.12em;color:var(--red);margin-bottom:28px}.dark .kicker,.dark .accent{color:var(--blue)}.grid{display:grid;grid-template-columns:1.25fr 1fr;gap:clamp(24px,5vw,72px);align-items:start;margin-top:30px}.paper{background:var(--paper-soft);color:var(--ink);padding:28px;box-shadow:7px 7px 0 var(--red)}.tag{display:inline-block;background:var(--red);color:var(--light);padding:8px 18px;margin:18px 0}.note{font-size:var(--caption-size);color:var(--muted)}.dark .note{color:var(--light)}.number{font-family:var(--serif);font-size:clamp(54px,7vw,100px);line-height:1.1}.toc{display:grid;gap:10px;margin-top:28px}.toc button{background:transparent;border:0;text-align:left;color:var(--ink);padding:8px 0}.toc span{display:inline-block;color:var(--red);font:30px var(--serif);width:60px}.zoomable{background:var(--red);color:var(--light);border:0;padding:10px 20px;margin:12px 0}.steps{padding-left:1.5em}.steps li{padding-left:12px;margin-bottom:16px}.steps li::marker{color:var(--red);font-family:var(--serif);font-size:1.3em}.bars{display:grid;gap:20px;margin:24px 0}.bar{background:var(--red);height:30px;width:var(--value);max-width:100%}.bar.blue{background:var(--blue)}.shape{width:140px;height:140px;background:var(--red);margin:24px 0}.controls{height:80px;display:flex;gap:20px;align-items:center;justify-content:center;color:var(--light);font-size:16px}.controls button{background:var(--paper);color:var(--ink);border:0;padding:8px 18px}dialog{width:min(680px,90vw);max-height:85dvh;background:var(--paper-soft);color:var(--ink);border:0;padding:32px;overflow:auto}dialog::backdrop{background:#17121ecc}dialog p{white-space:pre-wrap;overflow-wrap:anywhere}dialog button{padding:8px 18px;background:var(--velvet);color:var(--light);border:0}.print-detail{display:none}
+@keyframes enter{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:translateX(0)}}
+@media(prefers-reduced-motion:reduce){.slide.active{animation:none}}
+@media(max-width:700px){.slide{aspect-ratio:auto;min-height:calc(100dvh - 80px);max-height:none;padding:28px 24px}.grid{grid-template-columns:1fr;gap:24px}h1{font-size:44px}h2{font-size:34px}.controls{gap:12px}.controls button{padding:8px 12px}.shape{width:80px;height:80px}.kicker{margin-bottom:20px}}
+@media print{@page{size:A4 landscape;margin:12mm}body{background:var(--paper);font-size:18px;print-color-adjust:exact;-webkit-print-color-adjust:exact}main{width:100%}.slide,.slide[hidden]{display:block!important;aspect-ratio:auto;min-height:0;max-height:none;overflow:visible;padding:24px;break-before:page;animation:none!important}.slide:first-child{break-before:auto}.controls,dialog,.zoomable{display:none!important}.print-detail{display:block;font-size:14px;white-space:pre-wrap;margin-top:16px}.grid{gap:28px}h1{font-size:56px}h2{font-size:40px}.paper{break-inside:avoid}.toc button{color:var(--ink)}}
 </style>
 </head>
 <body>
-<div class="deck" id="deck">
-<section class="slide active" style="background:var(--velvet)"><div style="position:absolute;left:6%;top:22%"><div class="anagram" style="font-size:88px">LO·EWE</div><div class="serif-title" style="color:var(--ink-on-velvet);font-size:26px;margin-top:24px">EDITORIAL CRAFT</div><div class="hand-red" style="font-size:30px;margin-top:20px">1846 MADRID</div></div><div style="position:absolute;right:14%;top:18%;width:180px;height:180px;background:var(--vermilion)"></div><div class="ribbon"><span>01 / 12</span><span>COVER</span></div></section>
-<section class="slide" style="background:var(--paper)"><div style="padding:96px 72px"><div class="label-caps" style="color:var(--vermilion)">CONTENTS</div><div class="serif-title" style="font-size:42px;color:var(--ink);margin-top:24px">目录 · 五个切面</div></div><div class="ribbon"><span>02 / 12</span><span>CONTENTS</span></div></section>
-</div>
-<div class="hint" style="position:fixed;bottom:12px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:11px;color:#8b7f9e">← → 翻页</div>
+<main id="deck" aria-label="演示文稿">
+<section class="slide dark active" id="cover" aria-labelledby="cover-title">
+<p class="kicker">EDITORIAL CRAFT / 使用示例</p>
+<div class="grid"><div><h1 id="cover-title">让内容<br><span class="accent">决定页面</span></h1><p>适用于方案、汇报和课程的编辑拼贴风演示底座。</p><p class="note">本文件演示运行能力与构图，所有示例数字均为模拟。</p></div><div><div class="shape" aria-hidden="true"></div><p class="tag">暖纸 · 深紫 · 红蓝</p><p>按内容增删页面，保留导航和验证约定。</p></div></div>
+</section>
+<section class="slide" id="contents" aria-labelledby="contents-title" hidden>
+<p class="kicker">阅读路径</p><h2 id="contents-title">四种信息关系</h2>
+<nav class="toc" aria-label="目录"><button data-goto="argument"><span>01</span>论点与依据</button><button data-goto="data"><span>02</span>数据与口径</button><button data-goto="plan"><span>03</span>行动与顺序</button><button data-goto="close"><span>04</span>交付与检查</button></nav>
+<p class="note">点击目录跳页；键盘方向键翻页；Home / End 到首页 / 末页。</p>
+</section>
+<section class="slide" id="argument" aria-labelledby="argument-title" hidden>
+<p class="kicker">论点与依据</p><h2 id="argument-title">一页讲清一个判断</h2>
+<div class="grid"><div><p>先写读者需要理解的结论，再选择支撑它的材料。信息关系决定使用清单、图文、比较还是图表。</p><p>同一类比较可以连续使用相同构图，帮助读者识别差异。</p></div><aside class="paper"><h3>详情承载补充信息</h3><p>正文保留结论和必要依据。点击只用于展开额外解释。</p><button class="zoomable" data-extra="补充说明：自读稿需要保留背景、依据和行动建议；自讲稿可以把讲述细节放进讲稿。此处只是功能演示，不包含客户事实。">阅读补充说明</button></aside></div>
+</section>
+<section class="slide" id="data" aria-labelledby="data-title" hidden>
+<p class="kicker">模拟数据 / 非真实业绩</p><h2 id="data-title">比较之前，先统一口径</h2>
+<div class="grid"><div><p>示例：同一流程的两次任务完成率。</p><div class="bars" role="img" aria-label="模拟完成率：第一期60%，第二期80%；满刻度100%"><div>第一期 60%<div class="bar" style="--value:60%"></div></div><div>第二期 80%<div class="bar blue" style="--value:80%"></div></div></div><p class="note">来源：本样张模拟。两期各 100 项任务，同一完成定义；柱长从 0 到 100%。</p></div><div class="paper"><p class="number">+20</p><h3>个百分点</h3><p>80% − 60% = 20 个百分点。相对增幅约为 33.3%，两种口径不能混用。</p></div></div>
+</section>
+<section class="slide" id="plan" aria-labelledby="plan-title" hidden>
+<p class="kicker">行动与顺序</p><h2 id="plan-title">把工作拆成可检查的步骤</h2>
+<ol class="steps"><li><strong>整理材料。</strong>确认受众、目的、格式以及可用证据。</li><li><strong>组织页面。</strong>选择结构，保留关键限定和来源。</li><li><strong>检查交付。</strong>逐页阅读，验证跳转、详情和窄屏呈现。</li></ol>
+<p class="note">这是方法演示，步骤数量应按真实任务调整。</p>
+</section>
+<section class="slide dark" id="close" aria-labelledby="close-title" hidden>
+<p class="kicker">交付检查</p><h2 id="close-title">能打开，也能读懂</h2><div class="grid"><div><p>内容有依据，页面有顺序，操作有反馈。</p><p>使用这份底座时替换示例内容，按实际材料增删页面，并重新运行验收。</p></div><div><p class="accent">离线 HTML · 自适应阅读 · 打印样式</p><p class="note">此文件不是原生 PowerPoint。需要可编辑 PPTX 时另行制作并检查。</p><button data-goto="contents" class="zoomable">返回目录</button></div></div>
+</section>
+</main>
+<nav class="controls" aria-label="翻页控制"><button id="prev" aria-label="上一页">← 上一页</button><span id="page-status" role="status" aria-live="polite"></span><button id="next" aria-label="下一页">下一页 →</button></nav>
+<dialog id="detail-dialog" aria-labelledby="detail-title"><h2 id="detail-title">补充说明</h2><p id="detail-text"></p><button id="detail-close">关闭</button></dialog>
 <script>
-const slides=[...document.querySelectorAll('.slide')];let i=0;
-function go(n){i=(n+slides.length)%slides.length;slides.forEach((s,k)=>{s.classList.remove('active');if(k===i){s.classList.add('active');}});}
-document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')go(i+1);if(e.key==='ArrowLeft')go(i-1);});
-document.getElementById('deck').addEventListener('click',()=>go(i+1));
+'use strict';
+const slides = [...document.querySelectorAll('.slide')];
+const previous = document.querySelector('#prev');
+const next = document.querySelector('#next');
+const status = document.querySelector('#page-status');
+const dialog = document.querySelector('#detail-dialog');
+let index = 0;
+let opener = null;
+function show(n) {
+  index = Math.max(0, Math.min(slides.length - 1, n));
+  slides.forEach((slide, k) => { slide.hidden = k !== index; slide.classList.toggle('active', k === index); });
+  status.textContent = `${index + 1} / ${slides.length}`;
+  slides[index].scrollTop = 0;
+  window.scrollTo(0, 0);
+  previous.disabled = index === 0;
+  next.disabled = index === slides.length - 1;
+}
+previous.addEventListener('click', () => show(index - 1));
+next.addEventListener('click', () => show(index + 1));
+document.querySelectorAll('[data-goto]').forEach(button => {
+  button.addEventListener('click', () => {
+    const target = slides.findIndex(s => s.id === button.dataset.goto);
+    if (target < 0) return;
+    show(target);
+    const heading = slides[target].querySelector('h1,h2');
+    if (heading) { heading.tabIndex = -1; heading.focus({preventScroll:true}); }
+  });
+});
+document.querySelectorAll('.zoomable[data-extra]').forEach(button => {
+  const printDetail = document.createElement('p');
+  printDetail.className = 'print-detail';
+  printDetail.textContent = button.dataset.extra;
+  button.after(printDetail);
+  button.addEventListener('click', () => {
+    opener = button;
+    document.querySelector('#detail-text').textContent = button.dataset.extra;
+    dialog.showModal();
+    document.querySelector('#detail-close').focus();
+  });
+});
+document.querySelector('#detail-close').addEventListener('click', () => dialog.close());
+dialog.addEventListener('click', event => {
+  const r = dialog.getBoundingClientRect();
+  if (event.target === dialog && (event.clientX < r.left || event.clientX > r.right || event.clientY < r.top || event.clientY > r.bottom)) dialog.close();
+});
+dialog.addEventListener('close', () => { if (opener) opener.focus(); });
+document.addEventListener('keydown', event => {
+  if (dialog.open || event.altKey || event.ctrlKey || event.metaKey || event.target.closest('input,textarea,select,[contenteditable="true"]')) return;
+  const destinations = {ArrowRight:index+1, ArrowLeft:index-1, Home:0, End:slides.length-1};
+  if (Object.hasOwn(destinations,event.key)) { event.preventDefault(); show(destinations[event.key]); }
+});
+show(0);
 </script>
 </body>
 </html>
