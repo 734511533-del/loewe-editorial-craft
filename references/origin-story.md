@@ -1,4 +1,6 @@
-# LOEWE Editorial Craft · 拆解说明
+# LOEWE Editorial Craft · 历史拆解说明
+
+> 本文保留原仓库的拆解记录。原始图片、链接、日期与授权信息未附，涉及品牌活动与素材来源的表述未经本次独立核验。当前执行以 DESIGN.md 为准；历史“微旋转”“禁令”等表述不追加为生成要求。
 
 ## 素材来源
 
@@ -31,3 +33,4 @@
 ## 文件
 
 - `DESIGN.md` — 可直接被前端幻灯片技能读取的模板规范（frontmatter + 章节体例对齐 awesome-design-md 格式）
+
